@@ -85,6 +85,8 @@ local function configure_ibss(config, radio, index, suffix, disabled)
       mcast_rate = config.mcast_rate,
       ifname = suffix and 'ibss' .. suffix,
       disabled = disabled,
+      encryption = config.enc or 'none',
+      key = config.psk,
     }
   )
 end

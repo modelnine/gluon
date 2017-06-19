@@ -51,6 +51,7 @@ end
 
 for _, config in ipairs({'wifi24', 'wifi5'}) do
   local rates = {1000, 2000, 5500, 6000, 9000, 11000, 12000, 18000, 24000, 36000, 48000, 54000}
+  local enc = {'none', 'psk'}
   rates = need_array_of(config .. '.supported_rates', rates, false) or rates
 
   if need_table(config .. '.ibss', nil, false) then
@@ -59,6 +60,8 @@ for _, config in ipairs({'wifi24', 'wifi5'}) do
     need_one_of(config .. '.ibss.mcast_rate', rates, false)
     need_number(config .. '.ibss.vlan', false)
     need_boolean(config .. '.ibss.disabled', false)
+    need_one_of(config .. '.ibss.enc', enc, false)
+    need_string(config .. '.ibss.psk', false)
   end
 
   if need_table(config .. '.mesh', nil, false) then
